@@ -10,14 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/qr-code-g', function () {
-  \QrCode::size(500)
-            ->format('png')
-            ->generate('ItSolutionStuff.com', public_path('images/qrcode.png'));
-    
-  return view('qrCode');
-    
-});
+
 Route::get('/', function () {
     return view('auth.login');
 });
@@ -62,3 +55,5 @@ Route::get('/users', 'UsersController@index')->middleware('auth');
 Route::get('/users/{id}/edit', 'UsersController@edit')->middleware('auth');
 Route::put('/users/{id}', 'UsersController@update')->middleware('auth');
 Route::delete('/users/{id}', 'UsersController@destroy')->middleware('auth');
+Route::get('/qrcode/generate', 'QrCodeController@generateQrCode');
+Route::get('/qrproducts', 'QrProductController@index')->name('qrproducts.index');

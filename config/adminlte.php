@@ -114,25 +114,30 @@ return [
             'url'  => '/home',
             'icon' => 'dashboard',
         ],
-        'Supply MANAGEMENT',
+        'PRODUCT MANAGEMENT',
         [
-          'text' => 'Supply',
-          'icon' => 'dollar',
+          'text' => 'Supplies',
+          'icon' => 'Pesos',
           'submenu' => [
             [
-              'text' => 'New Supply',
+              'text' => 'New Supplies',
               'icon' => 'plus',
               'url' => '/products/create',
             ],
             [
-              'text' => 'View Supply',
+              'text' => 'View Supplies',
               'icon' => 'search',
               'url' => '/products',
+            ],
+            [
+              'text' => 'View Qr codes',
+              'icon' => 'search',
+              'url' => '/qrproducts',
             ],
           ],
         ],
         [
-          'text' => 'Categories',
+          'text' => 'Supplies categories',
           'icon' => 'asterisk',
           'submenu' => [
             [
@@ -201,7 +206,7 @@ return [
             ],
           ],
         ],
-        'SALES',
+        'Orders',
         [
           'text' => 'Orders',
           'icon' => 'file',
@@ -264,8 +269,10 @@ return [
         [
           'text' => 'Forms',
           'icon' => 'cogs',
-          'url' => '/',
+          'url' => '/settings',
         ],
+  
+       
     ],
 
     /*
