@@ -1,6 +1,7 @@
 {
     "require": {
         "barryvdh/laravel-dompdf": "^2.0",
-        "laravel/laravel": "^8.6"
+        "laravel/laravel": "^8.6",
+        "simplesoftwareio/simple-qrcode": "^4.2"
     }
 }
