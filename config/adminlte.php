@@ -114,10 +114,10 @@ return [
             'url'  => '/home',
             'icon' => 'dashboard',
         ],
-        'PRODUCT MANAGEMENT',
+        'Supply MANAGEMENT',
         [
           'text' => 'Supply',
-          'icon' => 'Pesos',
+          'icon' => 'dollar',
           'submenu' => [
             [
               'text' => 'New Supply',
@@ -125,14 +125,14 @@ return [
               'url' => '/products/create',
             ],
             [
-              'text' => 'View products',
+              'text' => 'View Supply',
               'icon' => 'search',
               'url' => '/products',
             ],
           ],
         ],
         [
-          'text' => 'Supply categories',
+          'text' => 'Categories',
           'icon' => 'asterisk',
           'submenu' => [
             [
@@ -153,17 +153,17 @@ return [
           'icon' => 'truck',
           'submenu' => [
             [
-              'text' => 'Check in Supply',
+              'text' => 'Check in Supplies',
               'icon' => 'plus-square',
               'url' => '/stock/add',
             ],
             [
-              'text' => 'Check out Supply',
+              'text' => 'Check out Supplies',
               'icon' => 'minus-square',
               'url' => '/stock/remove',
             ],
             [
-              'text' => 'Move Supply',
+              'text' => 'Move Supplies',
               'icon' => 'exchange',
               'url' => '/stock/move',
             ],
@@ -201,7 +201,7 @@ return [
             ],
           ],
         ],
-        'Flow',
+        'SALES',
         [
           'text' => 'Orders',
           'icon' => 'file',
@@ -219,7 +219,7 @@ return [
           ],
         ],
         [
-          'text' => 'Customers',
+          'text' => 'Departments',
           'icon' => 'shopping-cart',
           'submenu' => [
             [
@@ -260,6 +260,11 @@ return [
           'text' => 'Settings',
           'icon' => 'cogs',
           'url' => '/settings',
+        ],
+        [
+          'text' => 'Forms',
+          'icon' => 'cogs',
+          'url' => '/',
         ],
     ],
 
