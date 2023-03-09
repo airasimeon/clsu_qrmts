@@ -10,7 +10,14 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::get('/qr-code-g', function () {
+  \QrCode::size(500)
+            ->format('png')
+            ->generate('ItSolutionStuff.com', public_path('images/qrcode.png'));
+    
+  return view('qrCode');
+    
+});
 Route::get('/', function () {
     return view('auth.login');
 });
