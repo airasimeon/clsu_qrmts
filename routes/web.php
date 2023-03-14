@@ -57,3 +57,4 @@ Route::put('/users/{id}', 'UsersController@update')->middleware('auth');
 Route::delete('/users/{id}', 'UsersController@destroy')->middleware('auth');
 Route::get('/qrcode/generate', 'QrCodeController@generateQrCode');
 Route::get('/qrproducts', 'QrProductController@index')->name('qrproducts.index');
+Route::resource('products', 'Clsui2ProductController');

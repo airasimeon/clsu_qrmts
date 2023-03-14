@@ -1,99 +1,69 @@
-@extends('adminlte::page')
-
-@section('title', 'New product')
-
-@section('content_header')
-    <h1>New product</h1>
-@stop
+@extends('layouts.app')
 
 @section('content')
-	@include('includes.messages')
-    <div class="row">
-			<div class="col-sm-12">
-				<div class="box box-danger">
-					<div class="box-header with-border">
-						<h3 class="box-title">New product</h3>
-					</div>
-					<div class="box-body">
-						{!! Form::open(['action' => 'ProductsController@store', 'method' => 'post']) !!}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="panel panel-default">
+                    <div class="panel-heading">Add Product</div>
 
-						<div class="row">
-							<div class="col-sm-12">
-								<div class="form-group">
-									{{ Form::label('name', 'Product name') }}
-									{{ Form::text('name', '', ['class' => 'form-control', 'placeholder' => 'Product name']) }}
-								</div>
-							</div>
-						</div>
+                    <div class="panel-body">
+                        <form class="form-horizontal" method="POST" action="{{ route('products.store') }}">
+                            {{ csrf_field() }}
 
-            <div class="row">
-              <div class="col-sm-12">
-                <div class="form-group">
-                  {{Form::label('description', 'Product description')}}
-                  {{Form::textarea('description', '', ['id' => 'ck-textarea', 'class' => 'form-control ck-textarea', 'style' => 'resize: vertical', 'placeholder' => 'Product description'])}}
+                            <div class="form-group{{ $errors->has('product_name') ? ' has-error' : '' }}">
+                                <label for="product_name" class="col-md-4 control-label">Product Name</label>
+
+                                <div class="col-md-6">
+                                    <input id="product_name" type="text" class="form-control" name="product_name" value="{{ old('product_name') }}" required autofocus>
+
+                                    @if ($errors->has('product_name'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('product_name') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="form-group{{ $errors->has('description') ? ' has-error' : '' }}">
+                                <label for="description" class="col-md-4 control-label">Description</label>
+
+                                <div class="col-md-6">
+                                    <textarea id="description" class="form-control" name="description" required>{{ old('description') }}</textarea>
+
+                                    @if ($errors->has('description'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('description') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="form-group{{ $errors->has('product_category') ? ' has-error' : '' }}">
+                                <label for="product_category" class="col-md-4 control-label">Product Category</label>
+
+                                <div class="col-md-6">
+                                    <input id="product_category" type="text" class="form-control" name="product_category" value="{{ old('product_category') }}" required>
+
+                                    @if ($errors->has('product_category'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('product_category') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-6 col-md-offset-4">
+                                    <button type="submit" class="btn btn-primary">
+                                        Add Product
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
-              </div>
             </div>
-
-            <div class="row">
-              <div class="col-sm-6">
-                <div class="form-group">
-                  {{Form::label('product_category_id', 'Product category')}}
-                  {{Form::select('product_category_id', $categories->pluck('name', 'id'), null, ['id' => 'select2', 'class' => 'form-control select2', 'placeholder' => 'Product category'])}}
-                  <p>Is the category you're looking for not in this list? Create it <a target="_blank" href="/product-categories/create">here</a>.</p>
-                </div>
-              </div>
-              <div class="col-sm-6">
-                <div class="form-group">
-                  {{Form::label('supplier_id', 'Supplier')}}
-                  {{Form::select('supplier_id', $suppliers->pluck('name', 'id'), null, ['id' => 'select2', 'class' => 'form-control select2', 'placeholder' => 'Supplier'])}}
-                  <p>Is the supplier you're looking for not in this list? Add them <a target="_blank" href="/suppliers/create">here</a>.</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="row">
-    					<div class="col-sm-6">
-    						<div class="form-group">
-    							{{Form::label('sales_price', 'Sales price')}}
-    				      {{Form::number('sales_price', '', ['step' => '0.01', 'class' => 'form-control', 'placeholder' => 'Sales price'])}}
-    						</div>
-    					</div>
-              <div class="col-sm-6">
-                <div class="form-group">
-                  {{Form::label('buy_price', 'Buy-in price')}}
-                  {{Form::number('buy_price', '', ['step' => '0.01', 'class' => 'form-control', 'placeholder' => 'Buy-in price'])}}
-                </div>
-              </div>
-    				</div>
-
-            <div class="row">
-              <div class="col-sm-6">
-                <div class="form-group">
-                  {{Form::label('instock', 'In stock')}}
-                  {{Form::select('instock', [0 => 'No', 1 => 'Yes'], null, ['id' => 'select2', 'class' => 'form-control select2', 'placeholder' => 'In stock'])}}
-                </div>
-              </div>
-              <div class="col-sm-6">
-                <div class="form-group">
-                  {{Form::label('discontinued', 'Discontinued')}}
-                  {{Form::select('discontinued', [0 => 'No', 1 => 'Yes'], null, ['id' => 'select2', 'class' => 'form-control select2', 'placeholder' => 'Discontinued'])}}
-                </div>
-              </div>
-            </div>
-
-
-						{{ Form::submit('Create product', ['class' => 'pull-right btn btn-default']) }}
-
-						{!! Form::close() !!}
-					</div>
-				</div>
-			</div>
+        </div>
     </div>
-@stop
-
-@section('js')
-  <script src="{{asset('js/render_select2.js')}}" charset="utf-8"></script>
-  <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
-  <script src="{{asset('js/render_ckeditor.js')}}" charset="utf-8"></script>
 @endsection

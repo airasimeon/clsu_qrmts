@@ -7,51 +7,42 @@
 @stop
 
 @section('content')
-	@include('includes.messages')
-    <div class="row">
-			<div class="col-sm-12">
-				<div class="box box-danger">
-					<div class="box-header with-border">
-						<h3 class="box-title">Products</h3>
-					</div>
-					<div class="box-body">
-						<table class="table" id="datatable">
-							<thead>
-								<tr>
-									<th>#</th>
-									<th>Product name</th>
-                  <th>Sales price</th>
-                  <th>Buy-in price</th>
-                  <th>Instock</th>
-                  <th>Discontinued</th>
-									<th></th>
-								</tr>
-							</thead>
-							<tbody>
+	@if ($message = Session::get('success'))
+    <div class="alert alert-success">
+        <p>{{ $message }}</p>
+    </div>
+@endif
 
-								@foreach ($products as $product)
-									<tr>
-										<td>{{$product->id}}</td>
-										<td>{{$product->name}}</td>
-                    <td>{{$product->sales_price}}</td>
-                    <td>{{$product->buy_price}}</td>
-                    <td>
-                      @if ($product->instock == 1)
-                        Yes
-                      @else
-                        No
-                      @endif
-                    </td>
-                    <td>
-                      @if ($product->discontinued == 1)
-                        Yes
-                      @else
-                        No
-                      @endif
-                    </td>
-										<td><a href="/products/{{$product->id}}/edit" class="btn btn-default">Edit</a></td>
-									</tr>
-								@endforeach
+<table class="table table-bordered">
+    <tr>
+        <th>ID</th>
+        <th>QR</th>
+        <th>Product Name</th>
+        <th>Description</th>
+        <th>Product Category</th>
+        <th width="280px">Action</th>
+    </tr>
+    @foreach ($products as $product)
+    <tr>
+        <td>{{ $product->id }}</td>
+        <td>{{ $product->QR }}</td>
+        <td>{{ $product->product_name }}</td>
+        <td>{{ $product->description }}</td>
+        <td>{{ $product->product_category }}</td>
+        <td>
+            <a class="btn btn-info" href="{{ route('products.show',$product->id) }}">Show</a>
+            <a class="btn btn-primary" href="{{ route('products.edit',$product->id) }}">Edit</a>
+            <form action="{{ route('products.destroy', $product->id) }}" method="POST" style="display: inline-block;">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+        </td>
+    </tr>
+    @endforeach
+</table>
+
+<a class="btn btn-success" href="{{ route('products.create') }}">Create New Product</a>
 
 							</tbody>
 						</table>
