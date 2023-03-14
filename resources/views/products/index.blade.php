@@ -25,7 +25,7 @@
     @foreach ($products as $product)
     <tr>
         <td>{{ $product->id }}</td>
-        <td>{{ $product->QR }}</td>
+        <td><img src="{{ asset('qrcodes/' . $product->id . '.png') }}" alt="QR code for {{ $product->name }}"></td>
         <td>{{ $product->product_name }}</td>
         <td>{{ $product->description }}</td>
         <td>{{ $product->product_category }}</td>

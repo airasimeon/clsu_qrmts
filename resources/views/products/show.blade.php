@@ -8,7 +8,7 @@
         <div class="card-body">
             <p><strong>Description:</strong> {{ $product->description }}</p>
             <p><strong>Category:</strong> {{ $product->product_category }}</p>
-            <p><strong>QR:</strong> {{ $product->QR }}</p>
+            <p><strong>QR:</strong> <img src="{{ asset('qrcodes/' . $product->id . '.png') }}" alt="QR code for {{ $product->name }}"></p>
         </div>
     </div>
 @endsection
