@@ -120,11 +120,6 @@ return [
           'icon' => 'Pesos',
           'submenu' => [
             [
-              'text' => 'New Supplies',
-              'icon' => 'plus',
-              'url' => '/products/create',
-            ],
-            [
               'text' => 'View Supplies',
               'icon' => 'search',
               'url' => '/products',
@@ -171,22 +166,6 @@ return [
               'text' => 'Move Supplies',
               'icon' => 'exchange',
               'url' => '/stock/move',
-            ],
-          ],
-        ],
-        [
-          'text' => 'Storage locations',
-          'icon' => 'home',
-          'submenu' => [
-            [
-              'text' => 'New storage location',
-              'icon' => 'plus',
-              'url' => '/storage-locations/create',
-            ],
-            [
-              'text' => 'View storage locations',
-              'icon' => 'search',
-              'url' => '/storage-locations',
             ],
           ],
         ],
@@ -263,11 +242,6 @@ return [
         ],
         [
           'text' => 'Settings',
-          'icon' => 'cogs',
-          'url' => '/settings',
-        ],
-        [
-          'text' => 'Forms',
           'icon' => 'cogs',
           'url' => '/settings',
         ],
