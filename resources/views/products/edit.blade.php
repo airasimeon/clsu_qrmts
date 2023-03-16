@@ -1,99 +1,34 @@
-@extends('adminlte::page')
-
-@section('title', 'Edit product {{$product->name}}')
-
-@section('content_header')
-    <h1>Edit product {{$product->name}}</h1>
-@stop
+@extends('layouts.app')
 
 @section('content')
-	@include('includes.messages')
-    <div class="row">
-			<div class="col-sm-12">
-				<div class="box box-danger">
-					<div class="box-header with-border">
-						<h3 class="box-title">Edit product {{$product->name}}</h3>
-					</div>
-					<div class="box-body">
-						{!! Form::open(['action' => ['ProductsController@update', $product->id], 'method' => 'post']) !!}
+    <div class="container">
+        <h1>Edit Product</h1>
 
-						<div class="row">
-							<div class="col-sm-12">
-								<div class="form-group">
-									{{ Form::label('name', 'Product name') }}
-									{{ Form::text('name', $product->name, ['class' => 'form-control', 'placeholder' => 'Product name']) }}
-								</div>
-							</div>
-						</div>
+        <form method="POST" action="{{ route('products.update', $product->id) }}">
+            @csrf
+            @method('PUT')
 
-            <div class="row">
-              <div class="col-sm-12">
-                <div class="form-group">
-                  {{Form::label('description', 'Product description')}}
-                  {{Form::textarea('description', $product->description, ['id' => 'ck-textarea', 'class' => 'form-control', 'style' => 'resize: vertical', 'placeholder' => 'Product description'])}}
-                </div>
-              </div>
+            <div class="form-group">
+                <label for="product_name">Product Name:</label>
+                <input type="text" name="product_name" class="form-control" value="{{ $product->product_name }}">
             </div>
 
-            <div class="row">
-              <div class="col-sm-6">
-                <div class="form-group">
-                  {{Form::label('product_category_id', 'Product category')}}
-                  {{Form::select('product_category_id', $categories->pluck('name', 'id'), $product->product_category_id, ['id' => 'select2', 'class' => 'form-control select2', 'placeholder' => 'Product category'])}}
-                  <p>Is the category you're looking for not in this list? Create it <a target="_blank" href="/product-categories/create">here</a>.</p>
-                </div>
-              </div>
-              <div class="col-sm-6">
-                <div class="form-group">
-                  {{Form::label('supplier_id', 'Supplier')}}
-                  {{Form::select('supplier_id', $suppliers->pluck('name', 'id'), $product->supplier_id, ['id' => 'select2', 'class' => 'form-control select2', 'placeholder' => 'Supplier'])}}
-                  <p>Is the supplier you're looking for not in this list? Add them <a target="_blank" href="/suppliers/create">here</a>.</p>
-                </div>
-              </div>
+            <div class="form-group">
+                <label for="description">Description:</label>
+                <textarea name="description" class="form-control">{{ $product->description }}</textarea>
             </div>
 
-            <div class="row">
-    					<div class="col-sm-6">
-    						<div class="form-group">
-    							{{Form::label('sales_price', 'Sales price')}}
-    				      {{Form::number('sales_price', $product->sales_price, ['step' => '0.01', 'class' => 'form-control', 'placeholder' => 'Sales price'])}}
-    						</div>
-    					</div>
-              <div class="col-sm-6">
-                <div class="form-group">
-                  {{Form::label('buy_price', 'Buy-in price')}}
-                  {{Form::number('buy_price', $product->buy_price, ['step' => '0.01', 'class' => 'form-control', 'placeholder' => 'Buy-in price'])}}
-                </div>
-              </div>
-    				</div>
-
-            <div class="row">
-              <div class="col-sm-6">
-                <div class="form-group">
-                  {{Form::label('instock', 'In stock')}}
-                  {{Form::select('instock', [0 => 'No', 1 => 'Yes'], $product->instock, ['id' => 'select2', 'class' => 'form-control select2', 'placeholder' => 'In stock'])}}
-                </div>
-              </div>
-              <div class="col-sm-6">
-                <div class="form-group">
-                  {{Form::label('discontinued', 'Discontinued')}}
-                  {{Form::select('discontinued', [0 => 'No', 1 => 'Yes'], $product->discontinued, ['id' => 'select2', 'class' => 'form-control select2', 'placeholder' => 'Discontinued'])}}
-                </div>
-              </div>
+            <div class="form-group">
+                <label for="product_category">Product Category:</label>
+                <input type="text" name="product_category" class="form-control" value="{{ $product->product_category }}">
             </div>
 
-            {{ Form::hidden('_method', 'PUT') }}
-						{{ Form::submit('Save changes', ['class' => 'pull-right btn btn-default']) }}
+            <div class="form-group">
+                <label for="storage">Storage:</label>
+                <input type="text" name="storage" class="form-control" value="{{ $product->storage }}">
+            </div>
 
-						{!! Form::close() !!}
-					</div>
-				</div>
-			</div>
+            <button type="submit" class="btn btn-primary">Update</button>
+        </form>
     </div>
-@stop
-
-@section('js')
-  <script src="{{asset('js/render_select2.js')}}" charset="utf-8"></script>
-  <script src="/vendor/unisharp/laravel-ckeditor/ckeditor.js"></script>
-  <script src="{{asset('js/render_ckeditor.js')}}" charset="utf-8"></script>
 @endsection
