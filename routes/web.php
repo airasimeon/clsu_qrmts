@@ -10,6 +10,9 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/requisition', function () {
+  return view('requisition');
+});
 
 Route::get('/', function () {
     return view('auth.login');
@@ -58,3 +61,5 @@ Route::delete('/users/{id}', 'UsersController@destroy')->middleware('auth');
 Route::get('/qrcode/generate', 'QrCodeController@generateQrCode');
 Route::get('/qrproducts', 'QrProductController@index')->name('qrproducts.index');
 Route::resource('products', 'Clsui2ProductController');
+Route::resource('requisitions', RequisitionController::class);
+Route::get('/requisitions/pdf', 'RequisitionController@generatePDF')->name('requisitions.pdf');

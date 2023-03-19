@@ -1,6 +1,9 @@
-@extends('layouts.app')
+@extends('adminlte::page')
 
-@section('content')
+@section('title', ' Edit Products')
+
+@section('content_header')
+    <h1>Products</h1>
     <div class="container">
         <h1>Edit Product</h1>
 

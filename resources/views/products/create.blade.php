@@ -1,6 +1,9 @@
-@extends('layouts.app')
+@extends('adminlte::page')
 
-@section('content')
+@section('title', 'Products')
+
+@section('content_header')
+    <h1>Products</h1>
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">

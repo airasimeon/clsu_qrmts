@@ -1,6 +1,9 @@
-@extends('layouts.app')
+@extends('adminlte::page')
 
-@section('content')
+@section('title', 'Product List')
+
+@section('content_header')
+    <h1>Products</h1>
     <div class="card">
         <div class="card-header">
             {{ $product->product_name }}

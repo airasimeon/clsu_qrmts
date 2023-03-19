@@ -236,6 +236,11 @@ return [
           ],
         ],
         [
+          'text' => 'Forms',
+          'icon' => 'paper',
+          'url' => '/requisitions',
+        ],
+        [
           'text' => 'About',
           'icon' => 'info-circle',
           'url' => '/about',
